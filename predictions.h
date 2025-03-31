@@ -6,18 +6,18 @@
 #define LABEL_PREFIX ("__label__")
 #define LABEL_PREFIX_SIZE (sizeof(LABEL_PREFIX) - 1)
 
-#define FREE_STRING(str)                                                                                               \
-    do                                                                                                                 \
-    {                                                                                                                  \
-        if (str.data != nullptr)                                                                                       \
-            free(str.data);                                                                                            \
-        str.data = nullptr;                                                                                            \
-        str.size = 0;                                                                                                  \
+#define FREE_STRING(str)         \
+    do                           \
+    {                            \
+        if (str.data != nullptr) \
+            free(str.data);      \
+        str.data = nullptr;      \
+        str.size = 0;            \
     } while (0)
 
 #ifdef __cplusplus
-#define BEGIN_EXTERN_C()                                                                                               \
-    extern "C"                                                                                                         \
+#define BEGIN_EXTERN_C() \
+    extern "C"           \
     {
 #else
 #define BEGIN_EXTERN_C()
@@ -29,7 +29,8 @@
 #define END_EXTERN_C()
 #endif
 
-BEGIN_EXTERN_C() typedef void *FastText_Handle_t;
+BEGIN_EXTERN_C()
+typedef void *FastText_Handle_t;
 
 typedef struct
 {
@@ -58,7 +59,8 @@ typedef struct
         ERROR = 1,
     } status;
 
-    union {
+    union
+    {
         FastText_Handle_t handle;
         char *error;
     };
@@ -69,6 +71,7 @@ void FastText_DeleteHandle(const FastText_Handle_t handle);
 size_t FastText_Predict(const FastText_Handle_t handle, FastText_String_t query, uint32_t k, float threshold,
                         FastText_PredictItem_t *const value);
 FastText_FloatVector_t FastText_Wordvec(const FastText_Handle_t handle, FastText_String_t word);
+FastText_FloatVector_t FastText_Sentencevec(const FastText_Handle_t handle, FastText_String_t sentence);
 
 void FastText_FreeFloatVector(FastText_FloatVector_t vector);
 

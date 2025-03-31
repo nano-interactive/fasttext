@@ -1,4 +1,5 @@
 #include <fasttext/include/fasttext.h>
+#include <sstream>
 
 #include "predictions.h"
 
@@ -23,7 +24,6 @@ BEGIN_EXTERN_C()
 FastText_FloatVector_t FastText_Wordvec(const FastText_Handle_t handle, FastText_String_t word)
 {
     const auto model = reinterpret_cast<fasttext::FastText *>(handle);
-    int64_t dimensions = model->getDimension();
     auto vec = new fasttext::Vector(std::move(model->getWordVector(std::string_view(word.data, word.size))));
 
     return FastText_FloatVector_t{
@@ -33,23 +33,18 @@ FastText_FloatVector_t FastText_Wordvec(const FastText_Handle_t handle, FastText
     };
 }
 
-// FastText_FloatVector_t FastText_Sentencevec(const FastText_Handle_t handle, FastText_String_t sentence)
-// {
-//     const auto model = reinterpret_cast<fasttext::FastText *>(handle);
+FastText_FloatVector_t FastText_Sentencevec(const FastText_Handle_t handle, FastText_String_t sentence)
+{
+    const auto model = reinterpret_cast<fasttext::FastText *>(handle);
+    std::stringstream ss(sentence.data);
+    auto vec = new fasttext::Vector(std::move(model->getSentenceVector(ss)));
 
-//     membuf sbuf(sentence);
-//     std::istream in(&sbuf);
-
-//     auto vec = new fasttext::Vector(model->getDimension());
-//     model->getSentenceVector(in, *vec);
-//     FREE_STRING(sentence);
-
-//     return FastText_FloatVector_t{
-//         vec->data(),
-//         (void *)vec,
-//         (size_t)vec->size(),
-//     };
-// }
+    return FastText_FloatVector_t{
+        vec->data(),
+        (void *)vec,
+        (size_t)vec->size(),
+    };
+}
 
 void FastText_FreeFloatVector(FastText_FloatVector_t vector)
 {

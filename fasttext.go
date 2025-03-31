@@ -136,7 +136,30 @@ func (handle Model) Wordvec(word string) []float32 {
 		},
 	)
 
-  defer C.FastText_FreeFloatVector(r)
+	defer C.FastText_FreeFloatVector(r)
+
+	vectors := make([]float32, r.size)
+	ptr := (*float32)(unsafe.Pointer(r.data))
+	copy(vectors, unsafe.Slice(ptr, r.size))
+	return vectors
+}
+
+func (handle Model) Sentencevec(sentence string) []float32 {
+	var pinner runtime.Pinner
+	defer pinner.Unpin()
+
+	strData := cStr(sentence)
+	pinner.Pin(strData)
+
+	r := C.FastText_Sentencevec(
+		handle.p,
+		C.FastText_String_t{
+			data: strData,
+			size: C.size_t(len(sentence)),
+		},
+	)
+
+	defer C.FastText_FreeFloatVector(r)
 
 	vectors := make([]float32, r.size)
 	ptr := (*float32)(unsafe.Pointer(r.data))

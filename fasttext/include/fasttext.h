@@ -33,8 +33,8 @@
 namespace fasttext
 {
 
-class FastText
-{
+  class FastText
+  {
   public:
     using TrainCallback = std::function<void(float, float, double, double, int64_t)>;
 
@@ -91,8 +91,8 @@ class FastText
 
     inline void getInputVector(Vector &vec, int32_t ind)
     {
-        vec.zero();
-        addInputVector(vec, ind);
+      vec.zero();
+      addInputVector(vec, ind);
     }
 
     const Args getArgs() const;
@@ -115,6 +115,7 @@ class FastText
 
     void loadModel(const std::string &filename);
 
+    Vector getSentenceVector(std::istream &in) const;
     void getSentenceVector(std::istream &in, Vector &vec);
 
     void quantize(const Args &qargs, const TrainCallback &callback = {});
@@ -147,10 +148,10 @@ class FastText
 
     class AbortError : public std::runtime_error
     {
-      public:
-        AbortError() : std::runtime_error("Aborted.")
-        {
-        }
+    public:
+      AbortError() : std::runtime_error("Aborted.")
+      {
+      }
     };
-};
+  };
 } // namespace fasttext
