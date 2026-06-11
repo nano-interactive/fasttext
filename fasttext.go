@@ -1,6 +1,6 @@
 package fasttext
 
-// #cgo CXXFLAGS: -I${SRCDIR}/fasttext/include -I${SRCDIR} -std=c++17 -Ofast -fPIC -pthread -Wno-defaulted-function-deleted
+// #cgo CXXFLAGS: -I${SRCDIR}/fasttext/include -I${SRCDIR} -std=c++17 -O3 -ffast-math -fPIC -pthread -Wno-defaulted-function-deleted
 // #include <stdio.h>
 // #include <stdlib.h>
 // #include <stdint.h>
@@ -58,7 +58,7 @@ func Open(path string) (Model, error) {
 	}, nil
 }
 
-// Closes a model handle
+// Close Closes a model handle
 func (handle *Model) Close() error {
 	C.FastText_DeleteHandle(handle.p)
 	return nil
@@ -83,8 +83,8 @@ func (handle *Model) MultiLinePredict(lines []string, k int32, threshoad float32
 	return predics, nil
 }
 
-// Perform model prediction
-func (handle *Model) Predict(query string, k int32, threshoad float32) (Predictions, error) {
+// Predict Perform model prediction
+func (handle *Model) Predict(query string, k int32, threshold float32) (Predictions, error) {
 	var pinner runtime.Pinner
 	defer pinner.Unpin()
 
@@ -99,7 +99,7 @@ func (handle *Model) Predict(query string, k int32, threshoad float32) (Predicti
 			size: C.size_t(len(query)),
 		},
 		C.uint32_t(k),
-		C.float(threshoad),
+		C.float(threshold),
 		inputsPtr,
 	)
 
@@ -136,7 +136,7 @@ func (handle Model) Wordvec(word string) []float32 {
 		},
 	)
 
-  defer C.FastText_FreeFloatVector(r)
+	defer C.FastText_FreeFloatVector(r)
 
 	vectors := make([]float32, r.size)
 	ptr := (*float32)(unsafe.Pointer(r.data))
