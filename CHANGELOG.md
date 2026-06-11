@@ -1,22 +1,26 @@
 # Changelog
 
-## [v1.0.0-beta1](https://github.com/nano-interactive/fasttext/releases/tag/v1.0.0-beta1) (2024-05-11)
+## [v1.1.2](https://github.com/nano-interactive/fasttext/releases/tag/v1.1.2) (2026-06-11)
 
-[Full Changelog](https://github.com/nano-interactive/fasttext/compare/v2.0.0-alfa1...v1.0.0-beta1)
+[Full Changelog](https://github.com/nano-interactive/fasttext/compare/v2.0.0-beta1...v1.1.2)
 
-## [v2.0.0-alfa1](https://github.com/nano-interactive/fasttext/releases/tag/v1.0.0-beta1) (2024-04-18)
+## [v2.0.0-beta1](https://github.com/nano-interactive/fasttext/releases/tag/v1.1.2) (2024-05-11)
+
+[Full Changelog](https://github.com/nano-interactive/fasttext/compare/v2.0.0-alfa1...v2.0.0-beta1)
+
+## [v2.0.0-alfa1](https://github.com/nano-interactive/fasttext/releases/tag/v1.1.2) (2024-04-18)
 
 [Full Changelog](https://github.com/nano-interactive/fasttext/compare/v1.1.1...v2.0.0-alfa1)
 
-## [v1.1.1](https://github.com/nano-interactive/fasttext/releases/tag/v1.0.0-beta1) (2023-07-13)
+## [v1.1.1](https://github.com/nano-interactive/fasttext/releases/tag/v1.1.2) (2023-07-13)
 
 [Full Changelog](https://github.com/nano-interactive/fasttext/compare/v1.1.0...v1.1.1)
 
-## [v1.1.0](https://github.com/nano-interactive/fasttext/releases/tag/v1.0.0-beta1) (2023-07-13)
+## [v1.1.0](https://github.com/nano-interactive/fasttext/releases/tag/v1.1.2) (2023-07-13)
 
 [Full Changelog](https://github.com/nano-interactive/fasttext/compare/v1.0.0...v1.1.0)
 
-## [v1.0.0](https://github.com/nano-interactive/fasttext/releases/tag/v1.0.0-beta1) (2023-07-08)
+## [v1.0.0](https://github.com/nano-interactive/fasttext/releases/tag/v1.1.2) (2023-07-08)
 
 [Full Changelog](https://github.com/nano-interactive/fasttext/compare/007866660b25124e4ac9ff6dbc74a7d9510a7da7...v1.0.0)
 
